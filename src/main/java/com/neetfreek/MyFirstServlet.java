@@ -7,7 +7,6 @@ import java.io.IOException;
 
 public class MyFirstServlet extends HttpServlet {
 
-    // TODO: read about @Override
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
