@@ -1,7 +1,9 @@
 /*
  * Jonathan Widdowson
  * Neetfreek, 2021
- *
+ */
+
+/*
  * Domain Entity representing invoices
  */
 
