@@ -1,3 +1,8 @@
+/*
+ * Jonathan Widdowson
+ * Neetfreek, 2021
+ */
+
 package com.neetfreek;
 
 import java.util.UUID;
