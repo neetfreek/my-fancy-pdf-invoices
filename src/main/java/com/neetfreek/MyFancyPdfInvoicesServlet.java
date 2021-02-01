@@ -1,6 +1,8 @@
 /*
  * Jonathan Widdowson
  * Neetfreek, 2021
+ *
+ * Handles serving requests to server
  */
 
 package com.neetfreek;

@@ -1,6 +1,8 @@
 /*
  * Jonathan Widdowson
  * Neetfreek, 2021
+ *
+ * Launch application by running main()
  */
 
 package com.neetfreek;
