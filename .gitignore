@@ -1,6 +1,7 @@
 # Jetbrains IntelliJ IDEA
 /target
 .idea
+*.iml
 
 # Maven
 dependency-reduced-pom.xml
