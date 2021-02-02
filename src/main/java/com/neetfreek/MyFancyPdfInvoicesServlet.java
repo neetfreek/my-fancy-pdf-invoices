@@ -9,6 +9,8 @@
 
 package com.neetfreek;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,10 +30,23 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
                     "</body>\n" +
                     "</html>");
         }
-        // Write empty json object to response for GET request for invoices endpoint
-        else if (request.getRequestURI().equalsIgnoreCase("/invoices")) {
-            response.setContentType("application/json; charset=UTF-8");
-            response.getWriter().print("[]");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // Write JSON invoice to response for POST request using request parameters
+        if (request.getRequestURI().equalsIgnoreCase("/invoices")) {
+
+            String userId = request.getParameter("user_id");
+            Integer amount = Integer.valueOf(request.getParameter("amount"));
+
+            Invoice invoice = new InvoiceService().create(userId, amount);
+
+            response.setContentType("application/jsonM charset=UTF-8");
+            String json = new ObjectMapper().writeValueAsString(invoice);
+            response.getWriter().print(json);
+        } else {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 }
