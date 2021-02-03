@@ -18,6 +18,9 @@ import java.io.IOException;
 
 public class MyFancyPdfInvoicesServlet extends HttpServlet {
 
+    private final InvoiceService invoiceService = new InvoiceService();
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // Write HTML greeting page to response for GET request for root endpoint
@@ -40,10 +43,10 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
             String userId = request.getParameter("user_id");
             Integer amount = Integer.valueOf(request.getParameter("amount"));
 
-            Invoice invoice = new InvoiceService().create(userId, amount);
+            Invoice invoice = invoiceService.create(userId, amount);
 
             response.setContentType("application/jsonM charset=UTF-8");
-            String json = new ObjectMapper().writeValueAsString(invoice);
+            String json = objectMapper.writeValueAsString(invoice);
             response.getWriter().print(json);
         } else {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
