@@ -3,7 +3,9 @@
  * Neetfreek, 2021
  */
 
-package com.neetfreek;
+package com.neetfreek.myfancypdfinvoices.service;
+
+import com.neetfreek.myfancypdfinvoices.model.Invoice;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

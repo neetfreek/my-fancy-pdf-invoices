@@ -7,7 +7,7 @@
  * Domain Entity representing invoices
  */
 
-package com.neetfreek;
+package com.neetfreek.myfancypdfinvoices.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

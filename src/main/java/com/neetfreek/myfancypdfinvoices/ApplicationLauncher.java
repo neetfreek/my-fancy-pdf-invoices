@@ -7,8 +7,9 @@
  * Launch application by running main()
  */
 
-package com.neetfreek;
+package com.neetfreek.myfancypdfinvoices;
 
+import com.neetfreek.myfancypdfinvoices.web.MyFancyPdfInvoicesServlet;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.Wrapper;

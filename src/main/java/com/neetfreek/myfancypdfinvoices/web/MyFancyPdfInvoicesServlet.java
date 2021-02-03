@@ -7,9 +7,11 @@
  * Handle serving requests to server
  */
 
-package com.neetfreek;
+package com.neetfreek.myfancypdfinvoices.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.neetfreek.myfancypdfinvoices.model.Invoice;
+import com.neetfreek.myfancypdfinvoices.service.InvoiceService;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
