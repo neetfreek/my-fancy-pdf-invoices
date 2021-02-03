@@ -26,12 +26,13 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
         // Write HTML greeting page to response for GET request for root endpoint
         if (request.getRequestURI().equalsIgnoreCase("/")) {
             response.setContentType("text/html; charset=UTF-8");
-            response.getWriter().print("<html lang=\"en-GB\">\n" +
-                    "<body>\n" +
-                    "<h1>Hello World</h1>\n" +
-                    "<p>This is my first embedded Tomcat HTML page!</p>\n" +
-                    "</body>\n" +
-                    "</html>");
+            response.getWriter().print(
+                    "<html lang=\"en-GB\">\n" +
+                            "<body>\n" +
+                            "<h1>Hello World</h1>\n" +
+                            "<p>This is my first embedded Tomcat HTML page!</p>\n" +
+                            "</body>\n" +
+                            "</html>");
         }
     }
 
