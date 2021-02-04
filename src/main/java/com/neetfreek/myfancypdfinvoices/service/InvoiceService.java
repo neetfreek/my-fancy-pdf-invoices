@@ -3,6 +3,11 @@
  * Neetfreek, 2021
  */
 
+/*
+ * Service for actions related to Invoice domain entities
+ */
+
+
 package com.neetfreek.myfancypdfinvoices.service;
 
 import com.neetfreek.myfancypdfinvoices.model.Invoice;
