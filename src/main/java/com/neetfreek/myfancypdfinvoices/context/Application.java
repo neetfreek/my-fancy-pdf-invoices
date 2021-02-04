@@ -2,6 +2,7 @@
  * Jonathan Widdowson
  * Neetfreek, 2021
  */
+
 /*
  * Application class pattern for poor man's dependency management
  *      Keep singleton instances of services for global use
