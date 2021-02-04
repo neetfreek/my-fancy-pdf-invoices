@@ -19,7 +19,7 @@ public class InvoiceService {
 
     List<Invoice> invoices = new CopyOnWriteArrayList<>();
 
-    public List<Invoice> findAllInvoices() {
+    public List<Invoice> findAll() {
         return invoices;
     }
 

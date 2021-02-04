@@ -34,7 +34,7 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
                             "</html>");
         } else if (request.getRequestURI().equalsIgnoreCase("/invoices")) {
             response.setContentType("application/json; charset=UTF-8");
-            List<Invoice> invoices = Application.invoiceService.findAllInvoices();
+            List<Invoice> invoices = Application.invoiceService.findAll();
             response.getWriter().print(Application.objectMapper.writeValueAsString(invoices));
         }
     }
