@@ -9,9 +9,8 @@
 
 package com.neetfreek.myfancypdfinvoices.web;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.neetfreek.myfancypdfinvoices.context.Application;
 import com.neetfreek.myfancypdfinvoices.model.Invoice;
-import com.neetfreek.myfancypdfinvoices.service.InvoiceService;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +19,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class MyFancyPdfInvoicesServlet extends HttpServlet {
-
-    private final InvoiceService invoiceService = new InvoiceService();
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -38,8 +34,8 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
                             "</html>");
         } else if (request.getRequestURI().equalsIgnoreCase("/invoices")) {
             response.setContentType("application/json; charset=UTF-8");
-            List<Invoice> invoices = invoiceService.findAllInvoices();
-            response.getWriter().print(objectMapper.writeValueAsString(invoices));
+            List<Invoice> invoices = Application.invoiceService.findAllInvoices();
+            response.getWriter().print(Application.objectMapper.writeValueAsString(invoices));
         }
     }
 
@@ -51,10 +47,10 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
             String userId = request.getParameter("user_id");
             Integer amount = Integer.valueOf(request.getParameter("amount"));
 
-            Invoice invoice = invoiceService.create(userId, amount);
+            Invoice invoice = Application.invoiceService.create(userId, amount);
 
             response.setContentType("application/json; charset=UTF-8");
-            response.getWriter().print(objectMapper.writeValueAsString(invoice));
+            response.getWriter().print(Application.objectMapper.writeValueAsString(invoice));
         } else {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
