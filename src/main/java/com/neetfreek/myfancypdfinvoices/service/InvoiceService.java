@@ -9,6 +9,7 @@
 
 package com.neetfreek.myfancypdfinvoices.service;
 
+import com.neetfreek.myfancypdfinvoices.context.Application;
 import com.neetfreek.myfancypdfinvoices.model.Invoice;
 
 import java.util.List;
@@ -23,6 +24,11 @@ public class InvoiceService {
     }
 
     public Invoice create(String userId, Integer amount) {
+        // Validate user exists
+        if (Application.userService.findById(userId) == null) {
+            throw new IllegalStateException();
+        }
+
         //TODO: Implement create real PDF, store on server, use link in constructor
         Invoice invoice = new Invoice(userId, "http://africau.edu/images/default/sample.pdf", amount);
         invoices.add(invoice);
