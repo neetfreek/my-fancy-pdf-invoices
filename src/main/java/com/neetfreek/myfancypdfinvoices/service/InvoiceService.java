@@ -9,7 +9,6 @@
 
 package com.neetfreek.myfancypdfinvoices.service;
 
-import com.neetfreek.myfancypdfinvoices.context.Application;
 import com.neetfreek.myfancypdfinvoices.model.Invoice;
 
 import java.util.List;
@@ -17,7 +16,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class InvoiceService {
 
-    List<Invoice> invoices = new CopyOnWriteArrayList<>();
+    private final UserService userService;
+
+    private List<Invoice> invoices = new CopyOnWriteArrayList<>();
+
+    public InvoiceService(UserService userService) {
+        this.userService = userService;
+    }
 
     public List<Invoice> findAll() {
         return invoices;
@@ -25,7 +30,7 @@ public class InvoiceService {
 
     public Invoice create(String userId, Integer amount) {
         // Validate user exists
-        if (Application.userService.findById(userId) == null) {
+        if (userService.findById(userId) == null) {
             throw new IllegalStateException();
         }
 
