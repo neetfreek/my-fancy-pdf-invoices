@@ -21,8 +21,9 @@ public class InvoiceService {
 
     private final UserService userService;
 
-    private List<Invoice> invoices = new CopyOnWriteArrayList<>();
+    private final List<Invoice> invoices = new CopyOnWriteArrayList<>();
 
+    // Spring passes in userService @Bean automatically
     public InvoiceService(UserService userService) {
         this.userService = userService;
     }
