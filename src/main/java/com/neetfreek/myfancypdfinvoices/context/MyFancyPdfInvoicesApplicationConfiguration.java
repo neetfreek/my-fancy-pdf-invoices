@@ -5,34 +5,25 @@
 
 /*
  * Explicit JavaConfig for Spring's ApplicationContext
- *      @Scope for @Beans specified as singleton scope (SCOPE_SINGLETON) for clarity
+ *      @ComponentScan finds @Component classes in basePackage (com.neetfreek.myfancypdfinvoices):
+ *          - UserService
+ *          - InvoiceService
  */
 
 package com.neetfreek.myfancypdfinvoices.context;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.neetfreek.myfancypdfinvoices.service.InvoiceService;
-import com.neetfreek.myfancypdfinvoices.service.UserService;
+import com.neetfreek.myfancypdfinvoices.ApplicationLauncher;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 @Configuration
+@ComponentScan(basePackageClasses = ApplicationLauncher.class)
 public class MyFancyPdfInvoicesApplicationConfiguration {
-
-    @Bean
-    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public UserService userService() {
-        return new UserService();
-    }
-
-    @Bean
-    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public InvoiceService invoiceService(UserService userService) {
-        return new InvoiceService(userService);
-    }
 
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)

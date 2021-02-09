@@ -5,15 +5,18 @@
 
 /*
  * Service for actions related to Invoice domain entities
+ *    @Component scanned by MyFancyPdfInvoicesApplicationConfiguration to create singleton @Bean
  */
 
 package com.neetfreek.myfancypdfinvoices.service;
 
 import com.neetfreek.myfancypdfinvoices.model.Invoice;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+@Component
 public class InvoiceService {
 
     private final UserService userService;
