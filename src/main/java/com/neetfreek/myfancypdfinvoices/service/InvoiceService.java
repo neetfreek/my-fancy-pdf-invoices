@@ -6,11 +6,14 @@
 /*
  * Service for actions related to Invoice domain entities
  *    @Component scanned by MyFancyPdfInvoicesApplicationConfiguration to create singleton @Bean
+ *    Explicit @Autowired on constructor to specify required constructor for Spring
+ *      - Included just for clarity; Spring would use the only constructor to pass @Bean dep automatically
  */
 
 package com.neetfreek.myfancypdfinvoices.service;
 
 import com.neetfreek.myfancypdfinvoices.model.Invoice;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,14 +22,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Component
 public class InvoiceService {
 
-    private final UserService userService;
-
-    private final List<Invoice> invoices = new CopyOnWriteArrayList<>();
-
-    // Spring passes in userService @Bean automatically
+    @Autowired
     public InvoiceService(UserService userService) {
         this.userService = userService;
     }
+
+    private final List<Invoice> invoices = new CopyOnWriteArrayList<>();
+
+    private final UserService userService;
 
     public List<Invoice> findAll() {
         return invoices;
