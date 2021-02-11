@@ -16,6 +16,8 @@ import com.neetfreek.myfancypdfinvoices.model.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -30,6 +32,16 @@ public class InvoiceService {
     private final List<Invoice> invoices = new CopyOnWriteArrayList<>();
 
     private final UserService userService;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Dummy download of PDF template from server...");
+    }
+
+    @PreDestroy
+    public void shutdown() {
+        System.out.println("Dummy delete downloaded PDF template...");
+    }
 
     public List<Invoice> findAll() {
         return invoices;
