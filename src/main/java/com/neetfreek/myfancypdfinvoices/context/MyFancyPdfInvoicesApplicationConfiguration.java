@@ -5,7 +5,7 @@
 
 /*
  * Explicit JavaConfig for Spring's ApplicationContext
- *      @ComponentScan finds @Component classes in basePackage (com.neetfreek.myfancypdfinvoices):
+ *      @ComponentScan finds @Component, @Component specialisation classes in basePackage
  *          - UserService
  *          - InvoiceService
  */

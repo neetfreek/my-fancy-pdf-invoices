@@ -11,11 +11,11 @@
 package com.neetfreek.myfancypdfinvoices.service;
 
 import com.neetfreek.myfancypdfinvoices.model.User;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-@Component
+@Service
 public class UserService {
 
     public User findById(String id) {
