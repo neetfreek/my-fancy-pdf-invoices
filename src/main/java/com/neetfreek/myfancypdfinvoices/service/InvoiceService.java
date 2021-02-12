@@ -14,6 +14,7 @@ package com.neetfreek.myfancypdfinvoices.service;
 
 import com.neetfreek.myfancypdfinvoices.model.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -24,14 +25,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Component
 public class InvoiceService {
 
-    @Autowired
-    public InvoiceService(UserService userService) {
-        this.userService = userService;
-    }
-
     private final List<Invoice> invoices = new CopyOnWriteArrayList<>();
 
+    private final String cdnUrl;
     private final UserService userService;
+
+    @Autowired
+    public InvoiceService(@Value("${cdn.url}") String cdnUrl, UserService userService) {
+        this.cdnUrl = cdnUrl;
+        this.userService = userService;
+    }
 
     @PostConstruct
     public void init() {
@@ -54,7 +57,7 @@ public class InvoiceService {
         }
 
         //TODO: Implement create real PDF, store on server, use link in constructor
-        Invoice invoice = new Invoice(userId, "http://africau.edu/images/default/sample.pdf", amount);
+        Invoice invoice = new Invoice(userId, cdnUrl + "/images/default/sample.pdf", amount);
         invoices.add(invoice);
 
         return invoice;
