@@ -8,6 +8,8 @@
  *      @ComponentScan finds @Component, @Component specialisation classes in basePackage
  *          - UserService
  *          - InvoiceService
+ *      @PropertySource overwritten to application-dev.properties if profile changed with e.g.
+ *          -Dspring.profiles.active=dev
  */
 
 package com.neetfreek.myfancypdfinvoices.context;
@@ -21,6 +23,7 @@ import org.springframework.context.annotation.*;
 @Configuration
 @ComponentScan(basePackageClasses = ApplicationLauncher.class)
 @PropertySource("classpath:/application.properties")
+@PropertySource(value = "classpath:/application-${spring.profiles.active}.properties", ignoreResourceNotFound = true)
 public class MyFancyPdfInvoicesApplicationConfiguration {
 
     @Bean
