@@ -36,7 +36,6 @@ public class ApplicationLauncher {
 
         WebApplicationContext webAppCtx = createWebApplicationContext(tomcatCtx.getServletContext());
         DispatcherServlet dispatcherServlet = new DispatcherServlet(webAppCtx);
-        // Wrapper servlet = Tomcat.addServlet(tomcatCtx, "myFirstServlet", new MyFancyPdfInvoicesServlet());
         Wrapper servlet = Tomcat.addServlet(tomcatCtx, "dispatcherServlet", dispatcherServlet);
         servlet.setLoadOnStartup(1);
         servlet.addMapping("/*");
