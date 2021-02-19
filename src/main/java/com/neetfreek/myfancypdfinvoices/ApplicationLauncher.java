@@ -7,6 +7,7 @@
  * Launch application by running main()
  *      dispatcherServlet serves as Spring WebMVC entry point, acting as servlet accepting all HTTP requests to,
  *          and sending responses from, @Controllers
+ *      dispatcherServlet is registered with tomcat
  *      dispatcherServlet knows about application context as passed via MyFancyPdfInvoicesApplicationConfiguration.class
  *      webAppCtx knows about @Controllers and @...Mappings because of @ComponentScanning
  */
