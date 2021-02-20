@@ -15,9 +15,7 @@ package com.neetfreek.myfancypdfinvoices.web;
 
 import com.neetfreek.myfancypdfinvoices.model.Invoice;
 import com.neetfreek.myfancypdfinvoices.service.InvoiceService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,7 +29,6 @@ public class MyFancyPdfInvoicesController {
     }
 
     @GetMapping("/")
-    @ResponseBody
     public String index() {
         return "<html lang=\"en-GB\">\n" +
                 "<body>\n" +
@@ -45,5 +42,10 @@ public class MyFancyPdfInvoicesController {
     @GetMapping("/invoices")
     public List<Invoice> invoices() {
         return invoiceService.findAll();
+    }
+
+    @PostMapping("/invoices/{userId}/{amount}")
+    public Invoice creatInvoice(@PathVariable("userId") String userId, @PathVariable("amount") Integer amount) {
+        return invoiceService.create(userId, amount);
     }
 }
