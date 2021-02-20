@@ -13,6 +13,7 @@
 
 package com.neetfreek.myfancypdfinvoices.web;
 
+import com.neetfreek.myfancypdfinvoices.dto.InvoiceDto;
 import com.neetfreek.myfancypdfinvoices.model.Invoice;
 import com.neetfreek.myfancypdfinvoices.service.InvoiceService;
 import org.springframework.web.bind.annotation.*;
@@ -44,8 +45,8 @@ public class MyFancyPdfInvoicesController {
         return invoiceService.findAll();
     }
 
-    @PostMapping("/invoices/{userId}/{amount}")
-    public Invoice creatInvoice(@PathVariable("userId") String userId, @PathVariable("amount") Integer amount) {
-        return invoiceService.create(userId, amount);
+    @PostMapping("/invoices")
+    public Invoice creatInvoice(@RequestBody InvoiceDto invoiceDto) {
+        return invoiceService.create(invoiceDto.getUserId(), invoiceDto.getAmount());
     }
 }
