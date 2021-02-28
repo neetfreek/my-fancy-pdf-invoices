@@ -16,8 +16,10 @@ package com.neetfreek.myfancypdfinvoices.web;
 import com.neetfreek.myfancypdfinvoices.dto.InvoiceDto;
 import com.neetfreek.myfancypdfinvoices.model.Invoice;
 import com.neetfreek.myfancypdfinvoices.service.InvoiceService;
+
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -46,7 +48,7 @@ public class MyFancyPdfInvoicesController {
     }
 
     @PostMapping("/invoices")
-    public Invoice creatInvoice(@RequestBody InvoiceDto invoiceDto) {
+    public Invoice creatInvoice(@RequestBody @Valid InvoiceDto invoiceDto) {
         return invoiceService.create(invoiceDto.getUserId(), invoiceDto.getAmount());
     }
 }
