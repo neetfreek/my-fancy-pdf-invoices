@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.validation.ConstraintViolationException;
 
 @RestControllerAdvice
-public class GlobalControllerExceptionHandler {
+public class GlobalExceptionHandler {
 
     // Handle @RestController @RequestBody, @RequestParam validation errors
     @ResponseStatus(HttpStatus.BAD_GATEWAY)
