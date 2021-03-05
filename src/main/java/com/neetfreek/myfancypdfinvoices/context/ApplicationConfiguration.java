@@ -22,6 +22,9 @@ import com.neetfreek.myfancypdfinvoices.ApplicationLauncher;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
 @ComponentScan(basePackageClasses = ApplicationLauncher.class)
@@ -34,5 +37,39 @@ public class ApplicationConfiguration {
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public ObjectMapper objectMapper() {
         return new ObjectMapper();
+    }
+
+    // To find, render Strings from @Controllers
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public ThymeleafViewResolver viewResolver() {
+        ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
+        thymeleafViewResolver.setTemplateEngine(templateEngine());
+
+        thymeleafViewResolver.setOrder(1);
+        thymeleafViewResolver.setViewNames(new String[]{"*.html", "*.xhtml"});
+
+        return thymeleafViewResolver;
+    }
+
+    // Configures, creates Thymeleaf-specific template engine
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public SpringTemplateEngine templateEngine() {
+        SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
+        springTemplateEngine.setTemplateResolver(resourceTemplateResolver());
+
+        return springTemplateEngine;
+    }
+
+    // Finds Thymeleaf template
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public SpringResourceTemplateResolver resourceTemplateResolver() {
+        SpringResourceTemplateResolver springResourceTemplateResolver = new SpringResourceTemplateResolver();
+        springResourceTemplateResolver.setPrefix("classpath:/templates/"); // src/main/resources during development
+        springResourceTemplateResolver.setCacheable(false); // for development, not production
+
+        return springResourceTemplateResolver;
     }
 }

@@ -31,17 +31,6 @@ public class InvoicesController {
         this.invoiceService = invoiceService;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "<html lang=\"en-GB\">\n" +
-                "<body>\n" +
-                "<h1>Hello World v2</h1>\n" +
-                "<p>This is my first embedded Tomcat HTML page!</p>\n" +
-                "<p>Now improved with @controllers instead of httpServlets :)</p>\n" +
-                "</body>\n" +
-                "</html>";
-    }
-
     @GetMapping("/invoices")
     public List<Invoice> invoices() {
         return invoiceService.findAll();
