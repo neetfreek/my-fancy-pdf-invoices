@@ -7,11 +7,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>First Thymeleaf Template</title>
+    <title>My Fancy PDF Invoices</title>
 </head>
 <body>
-<h1>Hello World!</h1>
-
-<p>My very first Thymeleaf template.</p>
+<h1>My Fancy PDF Invoices</h1>
+<p>
+    Welcome
+    <span th:text="${username}" th:remove="tag">[username]</span>,
+    the date is now
+    <span th:text="${#dates.format(currentDate, 'dd-MM-yyyy HH:mm:ss')}">[currentDate]</span>.
+</p>
+<div th:if="${username == 'admin'}">
+    What a haxxor you are!
+</div>
 </body>
 </html>
