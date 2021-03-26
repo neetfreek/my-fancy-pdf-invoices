@@ -59,7 +59,6 @@ public class InvoiceService {
         //TODO: Implement create real PDF, store on server, use link in constructor
         Invoice invoice = new Invoice(userId, cdnUrl + "/images/default/sample.pdf", amount);
         invoices.add(invoice);
-
         return invoice;
     }
 }

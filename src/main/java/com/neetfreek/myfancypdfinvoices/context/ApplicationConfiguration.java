@@ -39,16 +39,14 @@ public class ApplicationConfiguration {
         return new ObjectMapper();
     }
 
-    // To find, render Strings from @Controllers
+    // Finds, renders Strings from @Controllers as HTML, XHTML files
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
         thymeleafViewResolver.setTemplateEngine(templateEngine());
-
         thymeleafViewResolver.setOrder(1);
         thymeleafViewResolver.setViewNames(new String[]{"*.html", "*.xhtml"});
-
         return thymeleafViewResolver;
     }
 
@@ -58,18 +56,16 @@ public class ApplicationConfiguration {
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
         springTemplateEngine.setTemplateResolver(resourceTemplateResolver());
-
         return springTemplateEngine;
     }
 
-    // Finds Thymeleaf template
+    // Finds Thymeleaf templates
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public SpringResourceTemplateResolver resourceTemplateResolver() {
         SpringResourceTemplateResolver springResourceTemplateResolver = new SpringResourceTemplateResolver();
         springResourceTemplateResolver.setPrefix("classpath:/templates/"); // src/main/resources during development
         springResourceTemplateResolver.setCacheable(false); // for development, not production
-
         return springResourceTemplateResolver;
     }
 }

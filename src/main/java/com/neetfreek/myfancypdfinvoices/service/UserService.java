@@ -23,4 +23,3 @@ public class UserService {
         return new User(id, UUID.randomUUID().toString());
     }
 }
-

@@ -4,7 +4,7 @@
  */
 
 /*
- * Domain transfer object modelling JSON objects send in HTTP POST requests to create new invoices
+ * Domain transfer object modelling JSON objects sent in HTTP POST requests to create new invoices
  */
 
 package com.neetfreek.myfancypdfinvoices.dto;
@@ -27,9 +27,7 @@ public class InvoiceDto {
     @NotNull
     @Min(1)
     @Max(1999)
-    public Integer getAmount() {
-        return amount;
-    }
+    public Integer getAmount() { return amount;}
 
     public void setAmount(Integer amount) {
         this.amount = amount;
