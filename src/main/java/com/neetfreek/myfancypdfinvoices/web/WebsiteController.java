@@ -42,7 +42,7 @@ public class WebsiteController {
     public String login(@ModelAttribute LoginForm loginForm, Model model) {
         // For development assume username == password is correct (instead of DB call)
         if (loginForm.getUsername().equals(loginForm.getPassword())) {
-            return "redirect:/";
+            return "redirect:/?username=" + loginForm.getUsername();
         }
         model.addAttribute("invalidCredentials", true);
         return "login.html";
