@@ -15,8 +15,12 @@
 <h1>Login</h1>
 <p>Enter your username and password.</p>
 <form th:action="@{/login}" th:object="${loginForm}" method="post">
-    <p>Username: <input type="text" th:field="*{username}"/></p>
-    <p>Password: <input type="password" th:field="*{password}"/></p>
+    <p>Username: <label>
+        <input type="text" th:field="*{username}"/>
+    </label></p>
+    <p>Password: <label>
+        <input type="password" th:field="*{password}"/>
+    </label></p>
     <p><input type="submit" value="Submit"></p>
 </form>
 </body>
