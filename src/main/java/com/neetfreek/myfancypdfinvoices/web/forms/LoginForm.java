@@ -5,9 +5,18 @@
 
 package com.neetfreek.myfancypdfinvoices.web.forms;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class LoginForm {
 
-    private String username, password;
+    @NotBlank
+    @Size(min = 3, max = 12)
+    private String username;
+
+    @NotBlank
+    @Size(min = 5, max = 12)
+    private String password;
 
     public String getUsername() {
         return username;
