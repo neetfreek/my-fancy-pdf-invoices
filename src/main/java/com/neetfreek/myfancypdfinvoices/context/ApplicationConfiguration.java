@@ -19,12 +19,15 @@ package com.neetfreek.myfancypdfinvoices.context;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.neetfreek.myfancypdfinvoices.ApplicationLauncher;
 
+import org.h2.jdbcx.JdbcDataSource;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+
+import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackageClasses = ApplicationLauncher.class)
@@ -37,6 +40,17 @@ public class ApplicationConfiguration {
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public ObjectMapper objectMapper() {
         return new ObjectMapper();
+    }
+
+    // Creates, configures embedded DBs
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public DataSource dataSource() {
+        JdbcDataSource jdbcDataSource = new JdbcDataSource();
+        jdbcDataSource.setURL("jdbc:h2:~/programming/java/h2;INIT=RUNSCRIPT FROM 'classpath:schema.sql'");
+        jdbcDataSource.setUser("sa");
+        jdbcDataSource.setPassword("sa");
+        return jdbcDataSource;
     }
 
     // Finds, renders Strings from @Controllers as HTML, XHTML files
