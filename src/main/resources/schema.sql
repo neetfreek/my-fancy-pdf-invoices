@@ -1,12 +1,7 @@
-/*
- * Jonathan Widdowson
- * Neetfreek, 2021
- */
-
-create table if not exists invoices
+CREATE TABLE if NOT EXISTS invoices
 (
-    id uuid default random_uuid() primary key
-    pdf_url varchar(255),
-    user_id varchar(255),
-    amount int
-);
+    id      uuid  DEFAULT random_uuid() PRIMARY KEY ,
+    pdf_url VARCHAR (255),
+    user_id VARCHAR(255),
+    amount  INT
+    );

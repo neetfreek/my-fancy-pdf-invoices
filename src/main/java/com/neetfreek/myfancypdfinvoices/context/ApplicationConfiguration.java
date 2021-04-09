@@ -22,6 +22,7 @@ import com.neetfreek.myfancypdfinvoices.ApplicationLauncher;
 import org.h2.jdbcx.JdbcDataSource;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
@@ -47,10 +48,18 @@ public class ApplicationConfiguration {
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public DataSource dataSource() {
         JdbcDataSource jdbcDataSource = new JdbcDataSource();
-        jdbcDataSource.setURL("jdbc:h2:~/programming/java/h2;INIT=RUNSCRIPT FROM 'classpath:schema.sql'");
+        jdbcDataSource.setURL("jdbc:h2:~/programming/h2/my-fancy-invoices;INIT=RUNSCRIPT FROM " +
+                "'classpath:schema.sql'");
         jdbcDataSource.setUser("sa");
         jdbcDataSource.setPassword("sa");
         return jdbcDataSource;
+    }
+
+    // Thread-safe class for multiple thread executions of SQL against DB
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource());
     }
 
     // Finds, renders Strings from @Controllers as HTML, XHTML files
